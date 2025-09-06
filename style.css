@@ -1,0 +1,240 @@
+/* --- TEMA FINAL "VINHO MONOCROMÁTICO" --- */
+:root {
+    --cor-fundo: #FFFFFF;
+    --cor-principal: #5D1A2A; /* Vermelho-vinho / Borgonha escuro */
+    --cor-destaque: #8C2B3F;  /* Tom de vinho um pouco mais claro para detalhes */
+    --cor-texto-claro: #F5F5F5;
+    --cor-texto-escuro: #212121;
+    --fonte-titulo: 'Merriweather', serif;
+    --fonte-corpo: 'Open Sans', sans-serif;
+}
+
+/* --- ESTILOS GERAIS --- */
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--fonte-corpo);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-escuro);
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden; /* Previne scroll horizontal causado pelas diagonais */
+}
+h1, h2, h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 900;
+}
+
+/* --- CABEÇALHO --- */
+header {
+    background-color: var(--cor-principal);
+    color: var(--cor-texto-claro);
+    padding: 15px 50px;
+    display: flex;
+    /* AJUSTADO PARA ALINHAR ITENS NAS EXTREMIDADES */
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+header .logo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.5em;
+    font-weight: 900;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+nav li {
+    margin-left: 30px;
+}
+nav a {
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    font-weight: 700;
+    transition: opacity 0.3s ease;
+}
+nav a:hover {
+    opacity: 0.8;
+}
+
+/* --- SEÇÃO DE INTRODUÇÃO --- */
+.intro-section {
+    padding: 100px 40px;
+    text-align: center;
+    background-color: #FFF8F9; /* Um branco levemente rosado/quente */
+}
+.intro-text h1 {
+    font-size: 4em;
+    color: var(--cor-principal);
+    margin: 0;
+}
+.intro-text p {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: 15px auto 0 auto;
+    color: #555;
+}
+.author-name {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 1.3em;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* --- ESTRUTURA DAS SEÇÕES --- */
+.content-section {
+    padding: 120px 40px; /* Aumenta o padding para dar espaço às diagonais */
+    position: relative;
+}
+.content-section h2 {
+    font-size: 3em;
+    text-align: center;
+    margin: 0 auto 30px auto;
+    max-width: 800px;
+}
+.content-section > p {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* --- INOVAÇÃO: DIVISÓRIAS DIAGONAIS --- */
+.secao-escura {
+    background-color: var(--cor-principal);
+    color: var(--cor-texto-claro);
+}
+.secao-escura::before, .secao-escura::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: var(--cor-fundo);
+}
+.secao-escura::before {
+    top: -1px; /* Cobre a junção */
+    transform: skewY(-2deg);
+    transform-origin: top left;
+}
+.secao-escura::after {
+    bottom: -1px; /* Cobre a junção */
+    transform: skewY(2deg);
+    transform-origin: bottom left;
+}
+.secao-escura + .content-section::before {
+    background-color: var(--cor-principal);
+}
+.intro-section + .content-section + .secao-escura::before {
+    background-color: var(--cor-fundo);
+}
+
+.secao-escura h2, .secao-escura h3, .secao-escura strong {
+    color: #FFFFFF;
+}
+.secao-escura .poem {
+    border-left-color: var(--cor-destaque);
+}
+
+/* --- VÍDEO EM DESTAQUE --- */
+.video-section {
+    padding: 80px 0;
+    text-align: center;
+}
+.video-header {
+    padding: 0 20px;
+}
+.video-header h2 { margin-bottom: 15px; }
+.video-header p {
+    font-size: 1.1em;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.video-player {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto 0 auto;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.video-player iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* --- SEÇÕES COM MÍDIA (Flickr, RPG) --- */
+.with-media .media-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    max-width: 1100px;
+    margin: 40px auto 0 auto;
+    position: relative; /* Garante que o conteúdo fique acima das diagonais */
+    z-index: 2;
+}
+.with-media .media-wrapper.reverse {
+    flex-direction: row-reverse;
+}
+.with-media .media-info {
+    flex: 1.5;
+    min-width: 300px;
+    text-align: left;
+}
+.with-media .media-info h3 {
+    font-size: 2.2em;
+    margin-top: 0;
+    color: var(--cor-destaque);
+}
+.secao-escura .media-info h3 {
+    color: #FFF;
+}
+.with-media .media-embed {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+.with-media .media-embed img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.with-media .media-embed img:hover {
+    transform: scale(1.03);
+}
+
+/* --- RODAPÉ --- */
+footer {
+    background-color: #212121;
+    color: #adb5bd;
+    text-align: center;
+    padding: 30px;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .intro-text h1 { font-size: 3em; }
+    header {
+        padding: 15px 20px;
+        /* Mantém o layout de space-between mas permite quebra de linha se necessário */
+    }
+    nav li { margin-left: 15px; }
+    .secao-escura::before { height: 50px; transform: skewY(-3deg); }
+    .secao-escura::after { height: 50px; transform: skewY(3deg); }
+}
